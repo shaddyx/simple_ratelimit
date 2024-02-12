@@ -53,7 +53,7 @@ class RateLimit:
             while True:
                 if not self.time_queue:
                     return
-                if now - self.time_queue[0].last_update_time > self.period:
+                if now - self.time_queue[0].last_update_time >= self.period:
                     rt_storage = self.time_queue.pop(0)
                     del self.storage[rt_storage.key]
                 else:
@@ -74,6 +74,7 @@ class RateLimit:
         now = time.time()
         if storage.get_for_period() >= self.times:
             self.delay_function(self.period - (now - storage.last_update_time))
+        now = time.time()
         storage.last_update_time = now
         storage.append(now)
 
@@ -82,5 +83,6 @@ class RateLimit:
         now = time.time()
         if storage.get_for_period() >= self.times:
             await self.delay_function(self.period - (now - storage.last_update_time))
+        now = time.time()
         storage.last_update_time = now
         storage.append(now)

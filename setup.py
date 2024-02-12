@@ -16,7 +16,7 @@ setup(
     ],
     package_data={"": ["*.json"]},
     # *strongly* suggested for sharing
-    version='0.01',
+    version='0.02',
     # The license can be anything you like
     license='MIT',
     description='The library to have the rate limit functionality in python',
